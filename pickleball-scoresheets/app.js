@@ -9,8 +9,8 @@ createApp({
       const competitionId = urlParams.get('c');
       const blank = urlParams.has('blank');
 
-      // const BASE_URL = 'https://api.reclub.co';
-      const BASE_URL = 'http://localhost:3000';
+      const BASE_URL = 'https://api.reclub.co';
+      // const BASE_URL = 'http://localhost:3000';
 
       let fetchUrl = `${BASE_URL}/export/pickleball-scoresheets?c=${competitionId}`;
       if (blank) fetchUrl += '&blank';
@@ -30,8 +30,6 @@ createApp({
           matchTime: eventTime ?? ''
         };
       })
-
-      console.log(matches.value)
     });
 
     return {
