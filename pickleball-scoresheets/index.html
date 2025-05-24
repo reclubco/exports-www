@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickleball Scorecard - Reclub</title>
+    <script src="vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <style>
+      @page { margin: 0; }
+      </style>
+</head>
+<body id="app">
+  <div class="divide-y divide-gray-200 divide-dashed">
+    <div class="p-8" v-for="(match, midx) in matches" :key="match.match_id" :class="[midx % 2 === 1 && 'break-after-page']">
+        <div class="flex mb-6">
+          <div class="mr-2">
+            <img src="logo.png" class="h-9"/>
+          </div>
+          <div class="flex-1">
+              <p class="font-bold text-gray-900 text-sm leading-none">{{match.eventName}}</p>
+              <span class="text-xs text-gray-600">{{match.eventDate}}<span v-if="match.eventLocation"> ({{match.eventLocation}})</span>
+          </div>
+          <p class="text-gray-700 font-bold border border-gray-600 px-4 py-1 mr-4 min-w-32 text-center">{{ match.eventTime }}</p>
+            <p class="text-gray-700 font-bold border border-gray-600 px-4 py-1 min-w-32 text-center" >{{match.sublocationName}}</p>
+        </div>
+
+        <div v-for="(team, idx) in match.teams" class="my-4" :class="[idx % 2 === 1 && 'rotate-180 mt-8 ']">
+          <div class="flex">
+            <table class="w-full border-collapse">
+              <thead>
+                <tr>
+                  <td colspan="18" class="pb-2">
+                    <p class="font-black">{{team.name}} <span v-if="team.players">({{team.players.join(', ')}})</span></p>
+                  </td>
+                  <td colspan="2" class="text-center font-semibold text-gray-600 text-xs">Timeouts</td>
+                </tr>
+              </thead>
+              <tbody>
+              <tr v-for="set in [...Array(match.numSets).keys()]">
+                <td v-for="num in [...Array(17).keys()]" class="border border-gray-300 p-2 text-center text-xs text-gray-500">
+                  {{num + 1}}
+                </td>
+                <td class="border-0 border-transparent w-12">
+                </td>
+                <td class="border border-gray-300 p-2 text-center w-16">
+                </td>
+                <td class="border border-gray-300 p-2 text-center w-16">
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+          <div class="border border-gray-300 flex mt-4">
+            <div class="flex-1 border-r border-gray-300 p-2">
+              <p class="pt-8 font-semibold text-gray-500 text-xs">Winner Signature</p>
+            </div>
+            <div class="flex-1 p-2">
+              <p class="pt-8 font-semibold text-gray-500 text-xs">Referee Signature</p>
+            </div>
+          </div>
+    </div>
+    </div>
+
+    <script src="vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

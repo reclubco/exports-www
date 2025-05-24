@@ -1,0 +1,112 @@
+@media print {
+  body {
+    font-size: 10pt;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+  }
+
+  #app>.divide-y>div {
+    page-break-inside: avoid;
+    /* Try to keep each match from breaking across pages */
+    width: 100%;
+    box-shadow: none;
+    border: 1px solid #ccc;
+    /* Add a light border for separation on print */
+    margin-bottom: 0.5in;
+    /* Space between matches */
+  }
+
+  /* Attempt to fit two matches per page by controlling height and breaking */
+  /* This is an approximation and might need further tweaking based on content */
+  #app>.divide-y>div:nth-child(2n) {
+    /* No explicit page break after every second item, rely on natural flow and page-break-inside */
+  }
+
+  /* Hide elements not essential for print */
+  /* Example: if you have navigation or footers not for print */
+  /* .no-print { display: none !important; } */
+
+  /* Adjust padding and margins for print */
+  .p-8 {
+    padding: 0.25in !important;
+    /* Reduce padding for print */
+  }
+
+  img[src="logo.png"] {
+    max-width: 30px;
+    /* Smaller logo for print */
+    max-height: 30px;
+  }
+
+  /* Ensure Tailwind CSS utility classes are overridden if necessary for print */
+  .text-xl {
+    font-size: 14pt !important;
+  }
+
+  .text-lg {
+    font-size: 12pt !important;
+  }
+
+  .text-sm {
+    font-size: 9pt !important;
+  }
+
+  /* Ensure tables are not too wide and borders are visible */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+
+  td,
+  th {
+    border: 1px solid #666 !important;
+    /* Ensure borders are visible */
+    padding: 4px !important;
+  }
+
+  /* Specific adjustments for the scoresheet layout */
+  .flex {
+    display: flex !important;
+    /* Ensure flex is applied */
+  }
+
+  .flex-1 {
+    flex: 1 !important;
+  }
+
+  .mr-2 {
+    margin-right: 0.5rem !important;
+  }
+
+  .text-center {
+    text-align: center !important;
+  }
+
+  .font-bold {
+    font-weight: bold !important;
+  }
+
+  .bg-gray-200 {
+    background-color: #e2e8f0 !important;
+    /* Keep some background for emphasis if needed */
+    -webkit-print-color-adjust: exact;
+    /* Ensure background colors print */
+    print-color-adjust: exact;
+  }
+
+  .divide-y {
+    border: none !important;
+    /* Remove outer divider for print if it's just for screen */
+  }
+
+  .divide-dashed {
+    border-style: none !important;
+  }
+
+  /* Signature lines */
+  .pt-12 {
+    padding-top: 2rem !important;
+    /* Reduce padding a bit */
+  }
+}
